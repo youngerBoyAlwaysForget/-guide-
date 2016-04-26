@@ -1,0 +1,259 @@
+
+@echo off
+title Comodo Internet Security File and Registry Cleaner
+echo Welcome!
+echo This is a batch file, created by Ragwing on the Comodo Forums, for removing
+echo left-over files and registry entries. Thanks to USSS!
+echo Before you continue, please make sure that:
+echo * Comodo Internet Security has been uninstalled (if possible)
+echo * You have created a system restore point
+echo * cmdagent.exe and cfp.exe aren't running
+echo * You're logged in as an administrator
+
+echo This batch file will now attempt to delete all left-over files and registry
+echo entries created by Comodo Internet Security...
+pause
+
+@echo off
+cd "%systemdrive%\Documents and Settings\All Users\Application Data\comodo\"
+IF EXIST "Firewall Pro" RD /S /Q "Firewall Pro"
+IF EXIST "common" RD /S /Q "common"
+
+cd %systemdrive%\Documents and Settings\All Users\Skrivbord\"
+IF EXIST "COMODO Firewall Pro" DEL "COMODO Firewall Pro"
+
+cd "%systemdrive%\Documents and Settings\%username%\Application Data\Comodo\"
+IF EXIST "Firewall Pro" RD /S /Q "Firewall Pro"
+IF EXIST "UserThemes" RD /S /Q "UserThemes"
+
+cd "%systemdrive%\Documents and Settings\%username%\L*\Application Data\Comodo\"
+IF EXIST "ComodoFireWall" RD /S /Q "ComodoFireWall"
+
+cd "%programfiles%\Comodo\"
+IF EXIST "Firewall" RD /S /Q "Firewall"
+IF EXIST "Comodo Internet Security" RD /S /Q "Comodo Internet Security"
+IF EXIST "SafeSurf" RD /S /Q "SafeSurf"
+
+cd "%windir%\system32\"
+
+IF EXIST "guard32.dll" DEL "guard32.dll"
+IF EXIST "cssdll32.dll" DEL "cssdll32.dll"
+
+cd "%windir%\system32\drivers\"
+IF EXIST "cmdGuard.sys" DEL "cmdGuard.sys"
+IF EXIST "cmdhlp.sys" DEL "cmdhlp.sys"
+IF EXIST "inspect.sys" DEL "inspect.sys"
+
+cd "%programfiles%\"
+IF EXIST "AskSBar" RD /S /Q "AskSBarDis"
+IF EXIST "AskSearch" RD /S /Q "AskSearch"
+
+cd "%programfiles%\Mozilla Firefox\components"
+IF EXIST "AskSearch.js" DEL "AskSearch.js"
+
+cd "%systemdrive%\Documents and Settings\*\Application Data\Mozilla\Firefox\extensions\"
+IF EXIST "{E9A1DEE0-C623-4439-8932-001E7D17607D}" DEL "{E9A1DEE0-C623-4439-8932-001E7D17607D}"
+
+REG DELETE "HKEY_CURRENT_USER\Software\CFP" /F
+REG DELETE "HKEY_CURRENT_USER\Software\ComodoGroup\CFP" /F
+REG DELETE "HKEY_CURRENT_USER\Software\ComodoGroup\CFPSkin" /F
+REG DELETE "HKEY_CURRENT_USER\Software\AppDataLow\AskBarDis" /F
+REG DELETE "HKEY_CURRENT_USER\Software\AskBarDis" /F
+REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\SearchScopes\{CF739809-1C6C-47C0-85B9-569DBB141420}" /F
+REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Start Menu\Programs\COMODO" /F
+REG DELETE "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Start Menu2\Programs\COMODO" /F
+REG DELETE "HKEY_CURRENT_USER\Software\Local AppWizard-Generated Applications\HKEY_CURRENT_USER\Software\Local AppWizard-Generated Applications\CFPLog" /F
+REG DELETE "HKEY_CURRENT_USER\Software\Local AppWizard-Generated Applications\CPFFileSubmission" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\Software\Comodo\Firewall Pro" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\Software\Comodo\SafeSurf" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\Software\SafeSurf" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\ComodoGroup\CDI\1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\ComodoGroup\CDI\13" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\cmdAgent" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\cmdGuard" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\cmdHlp" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Inspect" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\cmdAgent" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\cmdGuard" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\cmdHlp" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Inspect" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet003\Services\cmdAgent" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet003\Services\cmdGuard" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet003\Services\cmdHlp" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet003\Services\Inspect" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cmdAgent" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cmdGuard" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cmdHlp" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Inspect" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SYSTEM\Software\Comodo\Firewall Pro" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\COMODO Firewall Pro" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Management\ARPCache\COMODO Firewall Pro" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\COMODO SafeSurf" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\AskSBar Uninstall" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Ask Toolbar_is1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\COMODO Internet Security" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\COMDOO SafeSurf" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Help Objects\{F0D4B231-DA4B-4daf-81E4-DFEE4931A4AA}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Help Objects\{201f27d4-3704-41d6-89c1-aa35e39143ed}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskSBar.SettingsPlugin" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskSBar.SettingsPlugin.1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskSBar.ToolbarPlugin" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskSBar.ToolbarPlugin.1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterBarButton" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterBarButton\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterBarButton\CurVer" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterBarButton.1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterBarButton.1\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterSettingsControl" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterSettingsControl\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterSettingsControl\CurVer" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterSettingsControl.1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskIBar.PopSwatterSettingsControl.1\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskToolBar.SettingsPlugin" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskToolBar.SettingsPlugin\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskToolBar.SettingsPlugin\CurVer" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskToolBar.SettingsPlugin.1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AskToolBar.SettingsPlugin.1\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu\CurVer" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu.1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu.1\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu\CurVer" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu.1" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CavShell.CntMenu.1\CLSID" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shellex\ContextMenuHandlers\Comodo Antivirus" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AppID\CavShell.DLL" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AppID\{E11C8519-5595-4397-B515-AB036DEC467A}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{0579B4B1-0293-4d73-B02D-5EBB0BA0F0A2}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{B15FD82E-85BC-430d-90CB-65DB1B030510}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{F0D4B231-DA4B-4daf-81E4-DFEE4931A4AA}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{F0D4B238-DA4B-4daf-81E4-DFEE4931A4AA}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{F0D4B239-DA4B-4daf-81E4-DFEE4931A4AA}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{0702a2b6-13aa-4090-9e01-bcdc85dd933f}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{08993A7C-E764-4172-9627-BFB5EA6897B2}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{128A6C66-AC6A-4617-8268-AB7F47B7215E}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{201f27d4-3704-41d6-89c1-aa35e39143ed}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{3041d03e-fd4b-44e0-b742-2d9b88305f98}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{4255A182-CAD9-4214-A19B-7BA7FB633BBD}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{528B5866-2BA6-42ce-8F74-39FB23B49767}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{571715D7-3395-4DF0-B43C-784836209E60}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{622fd888-4e91-4d68-84d4-7262fd0811bf}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{710DF252-2566-41d3-BAF9-CEFA5840BFD2}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{9AFB8248-617F-460d-9366-D71CDEDA3179}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{B004FD67-F058-49e6-96DA-99237A82133C}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{b0de3308-5d5a-470d-81b9-634fc078393b}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{C94E154B-1459-4A47-966B-4B843BEFC7DB}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{D6267144-4B06-402a-808D-52D498387079}" /F
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{EC1D2C70-8CDE-4013-BE72-2B08A2C54B6B}" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskSBar.SettingsPlugin" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskSBar.SettingsPlugin.1" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskSBar.ToolbarPlugin" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskSBar.ToolbarPlugin.1" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterBarButton" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterBarButton\CLSID" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterBarButton\CurVer" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterBarButton.1" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterBarButton.1\CLSID" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterSettingsControl" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterSettingsControl\CLSID" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterSettingsControl\CurVer" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterSettingsControl.1" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskIBar.PopSwatterSettingsControl.1\CLSID" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskToolBar.SettingsPlugin" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskToolBar.SettingsPlugin\CLSID" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskToolBar.SettingsPlugin\CurVer" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskToolBar.SettingsPlugin.1" /F
+REG DELETE "HKEY_CLASSES_ROOT\AskToolBar.SettingsPlugin.1\CLSID" /F
+REG DELETE "HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\Comodo Antivirus" /F
+REG DELETE "HKEY_CLASSES_ROOT\AppID\CavShell.DLL" /F
+REG DELETE "HKEY_CLASSES_ROOT\AppID\{E11C8519-5595-4397-B515-AB036DEC467A}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{0579B4B1-0293-4d73-B02D-5EBB0BA0F0A2}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{B15FD82E-85BC-430d-90CB-65DB1B030510}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{F0D4B231-DA4B-4daf-81E4-DFEE4931A4AA}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{F0D4B238-DA4B-4daf-81E4-DFEE4931A4AA}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{F0D4B239-DA4B-4daf-81E4-DFEE4931A4AA}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{0702a2b6-13aa-4090-9e01-bcdc85dd933f}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{08993A7C-E764-4172-9627-BFB5EA6897B2}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{128A6C66-AC6A-4617-8268-AB7F47B7215E}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{201f27d4-3704-41d6-89c1-aa35e39143ed}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{3041d03e-fd4b-44e0-b742-2d9b88305f98}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{4255A182-CAD9-4214-A19B-7BA7FB633BBD}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{528B5866-2BA6-42ce-8F74-39FB23B49767}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{571715D7-3395-4DF0-B43C-784836209E60}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{622fd888-4e91-4d68-84d4-7262fd0811bf}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{710DF252-2566-41d3-BAF9-CEFA5840BFD2}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{9AFB8248-617F-460d-9366-D71CDEDA3179}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{B004FD67-F058-49e6-96DA-99237A82133C}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{b0de3308-5d5a-470d-81b9-634fc078393b}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{C94E154B-1459-4A47-966B-4B843BEFC7DB}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{D6267144-4B06-402a-808D-52D498387079}" /F
+REG DELETE "HKEY_CLASSES_ROOT\CLSID\{EC1D2C70-8CDE-4013-BE72-2B08A2C54B6B}" /F
+REG DELETE "HKEY_CLASSES_ROOT\Drive\shellex\ContextMenuHandlers\Comodo Antivirus" /F
+REG DELETE "HKEY_CLASSES_ROOT\file\shellex\ContextMenuHandlers\Comodo Antivirus" /F
+REG DELETE "HKEY_CLASSES_ROOT\Folder\shellex\ContextMenuHandlers\Comodo Antivirus" /F
+REG DELETE "HKEY_USERS\S-1-5-21-1417001333-329068152-839522115-1003\Software\CFP" /F
+REG DELETE "HKEY_USERS\S-1-5-21-1960408961-839522115-1957994488-500\Software\AppDataLow\AskBarDis" /F
+REG DELETE "HKEY_USERS\S-1-5-21-1960408961-839522115-1957994488-500\Software\Microsoft\Internet Explorer\SearchScopes\{CF739809-1C6C-47C0-85B9-569DBB141420}" /F
+
+> %TEMP%.\REGISTRY.REG ECHO REGEDIT4
+>>%TEMP%.\REGISTRY.REG ECHO.
+>>%TEMP%.\REGISTRY.REG ECHO [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
+>>%TEMP%.\REGISTRY.REG ECHO "COMODO SafeSurf"=-
+>>%TEMP%.\REGISTRY.REG ECHO.
+>>%TEMP%.\REGISTRY.REG ECHO [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
+>>%TEMP%.\REGISTRY.REG ECHO "COMODO Firewall Pro"=-
+>>%TEMP%.\REGISTRY.REG ECHO.
+>>%TEMP%.\REGISTRY.REG ECHO [HKEY_LOCAL MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce]
+>>%TEMP%.\REGISTRY.REG ECHO "Comodo Firewall Pro"=-
+>>%TEMP%.\REGISTRY.REG ECHO.
+>>%TEMP%.\REGISTRY.REG ECHO [HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\SearchScopes]
+>>%TEMP%.\REGISTRY.REG ECHO "{CF739809-1C6C-47C0-85B9-569DBB141420}"=-
+>>%TEMP%.\REGISTRY.REG ECHO.
+>>%TEMP%.\REGISTRY.REG ECHO [HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+>>%TEMP%.\REGISTRY.REG ECHO "http://www.comodo.com/search/"="about:blank"
+>>%TEMP%.\REGISTRY.REG ECHO.
+>>%TEMP%.\REGISTRY.REG ECHO [HKEY_USERS\S-1-5-21-1960408961-839522115-1957994488-500\Software\Microsoft\Internet Explorer\Main]
+>>%TEMP%.\REGISTRY.REG ECHO "http://www.comodo.com/search/"="about:blank"
+>>%TEMP%.\REGISTRY.REG ECHO.
+START /WAIT REGEDIT /S "%TEMP%.\REGISTRY.REG"
+cd "%TEMP%"
+del "REGISTRY.REG"
+
+sc delete cmdAgent
+
+NET STOP WINMGMT /Y
+
+cd "%windir%\system32\wbem\"
+RD /S /Q "Repository"
+
+NET START WINMGMT /Y
+
+echo All remains of Comodo Internet Security should now be gone!
+
+pause
+
+EXIT
+
+Copyright (c) 2009 Olivier Poitrey <rs@dailymotion.com>
+ 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is furnished
+to do so, subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
